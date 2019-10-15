@@ -70,7 +70,6 @@ def main():
     pred_str = sub[img_id]
     img = cv2.imread(fn, 1)
     img = visualize_predictions(img, pred_str, font, unicode_map)
-    print(img.shape[:2])
 
     img = cv2.resize(img, (1000, 800))
     cv2.imshow("t", img)
@@ -79,6 +78,10 @@ def main():
       break
     elif q == ord('b'):
       p -= 1
+    elif q == ord('s'):
+      out_fn = os.path.basename(fn).replace('.jpg', '.png')
+      cv2.imwrite(out_fn, img)
+      print("Saved to: %s" % out_fn)
     else:
       p += 1
 
